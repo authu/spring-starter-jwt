@@ -31,7 +31,7 @@ public class AuthuJwtWebmvcAutoConfiguration extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String header = request.getHeader(properties.getHeader());
+        String header = request.getHeader(properties.getRequest().getHeaderName());
         authServer.parse(header);
         filterChain.doFilter(request,response);
     }

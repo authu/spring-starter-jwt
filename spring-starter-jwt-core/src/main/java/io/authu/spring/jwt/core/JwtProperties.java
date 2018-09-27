@@ -12,9 +12,30 @@ import java.time.Duration;
 @Data
 @ConfigurationProperties(prefix = AuthuJwtPrefix.CORE)
 public class JwtProperties {
+
+    /**
+     * Open/stop authu jwt config, default true.
+     */
     private boolean enabled = true;
-    private String header = "Authorization";
-    private String prefix = "Bearer ";
+
+    /**
+     * Secret
+     * todo done it by other way
+     */
     private String secret = "cdsvhsklajxcohbfgflvkmdsochofbnogfmvsdohcurrvdkvfkjdin";
+
+    /**
+     * Generate token to set expire time
+     */
     private Duration timeout = Duration.ofDays(1);
+
+    /**
+     * Token max expire time, from create time
+     */
+    private Duration maxTimeout = Duration.ofDays(10);
+
+    /**
+     * Request relation config, such as header name etc.
+     */
+    private JwtRequestProperties request;
 }

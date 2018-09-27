@@ -20,7 +20,7 @@ public class JwtAuthServer {
     private JwtProperties properties;
 
     public Jws<Claims> parse(String token) {
-        String prefix = properties.getPrefix();
+        String prefix = properties.getRequest().getHeaderPrefix();
         if (StringUtils.isEmpty(token)) {
             log.warn("Token is empty!");
             throw new UnsupportedJwtException("Token is empty!");
@@ -29,7 +29,7 @@ public class JwtAuthServer {
             log.warn("Don't have prefix {}!", prefix);
             throw new UnsupportedJwtException("Unsupported jwt token!");
         }
-        token = token.substring(properties.getPrefix().length());
+        token = token.substring(prefix.length());
         return Jwts.parser().setSigningKey(properties.getSecret()).parseClaimsJws(token);
     }
 

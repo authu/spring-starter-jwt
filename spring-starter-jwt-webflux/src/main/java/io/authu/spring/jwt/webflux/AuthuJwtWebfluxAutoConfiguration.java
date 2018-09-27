@@ -32,7 +32,7 @@ public class AuthuJwtWebfluxAutoConfiguration implements WebFilter {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
 
-        List<String> list = request.getHeaders().get(properties.getHeader());
+        List<String> list = request.getHeaders().get(properties.getRequest().getHeaderName());
         if (list == null || list.size() != 1) {
             log.warn("Token is empty!");
             throw new UnsupportedJwtException("Token is empty!");

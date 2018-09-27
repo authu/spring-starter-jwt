@@ -9,6 +9,10 @@
     <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Provide unified handling auth for spring cloud through jwt .</description>
+    <url>https://github.com/authu/spring-starter-jwt/</url>
+
     <modules>
         <module>spring-starter-jwt-core</module>
         <module>spring-starter-jwt-webmvc</module>
@@ -19,6 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <javadoc.version>3.0.1</javadoc.version>
         <spring-boot.version>2.0.4.RELEASE</spring-boot.version>
         <spring-cloud.version>Finchley.SR1</spring-cloud.version>
         <authu-jwt.version>0.1.0-SNAPSHOT</authu-jwt.version>
@@ -29,10 +34,32 @@
     <distributionManagement>
         <snapshotRepository>
             <id>local-snapshot</id>
-            <name>authu-snapshot</name>
+            <name>authu</name>
             <url>http://localhost:19081/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Mr.J</name>
+            <email>jiang.taojie@foxmail.com</email>
+            <organization>Authu</organization>
+            <organizationUrl>https://github.com/authu/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/authu/spring-starter-jwt.git</connection>
+        <developerConnection>scm:git:ssh://github.com:authu/spring-starter-jwt.git</developerConnection>
+        <url>http://github.com/authu/spring-starter-jwt/tree/master</url>
+    </scm>
 
     <repositories>
         <repository>
@@ -92,5 +119,25 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${javadoc.version}</version>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
