@@ -19,7 +19,6 @@
         <module>spring-starter-jwt-webmvc</module>
         <module>spring-starter-jwt-webflux</module>
         <module>spring-starter-jwt-security</module>
-        <module>spring-starter-jwt-eureka</module>
         <module>spring-starter-jwt-admin-server</module>
 
     </modules>
@@ -126,11 +125,6 @@
             <dependency>
                 <groupId>io.authu</groupId>
                 <artifactId>spring-starter-jwt-core</artifactId>
-                <version>${authu-jwt.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.authu</groupId>
-                <artifactId>spring-starter-jwt-eureka</artifactId>
                 <version>${authu-jwt.version}</version>
             </dependency>
             <dependency>
