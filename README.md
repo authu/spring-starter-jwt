@@ -1,6 +1,7 @@
 # Authu Spring Jwt
 Authu Jwt For Spring Cloud    
 Provide unified handling auth through jwt   
+![status](https://img.shields.io/badge/status-dev-blue.svg)
 
 ## How to use ?
 Resolving artifacts using Maven   
@@ -46,7 +47,7 @@ Add dependency
 ```xml
 <dependency>
     <groupId>io.authu</groupId>
-    <artifactId>spring-starter-jwt-core</artifactId>
+    <artifactId>spring-starter-jwt-security</artifactId>
 </dependency>
 ```
 

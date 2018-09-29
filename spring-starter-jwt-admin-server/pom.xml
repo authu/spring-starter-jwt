@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-starter-jwt-webmvc</artifactId>
+    <artifactId>spring-starter-jwt-admin-server</artifactId>
 
     <dependencies>
 
@@ -19,8 +19,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-server</artifactId>
             <optional>true</optional>
         </dependency>
 

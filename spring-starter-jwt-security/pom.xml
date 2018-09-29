@@ -9,19 +9,26 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-starter-jwt-webmvc</artifactId>
+    <artifactId>spring-starter-jwt-security</artifactId>
+
 
     <dependencies>
 
         <dependency>
             <groupId>io.authu</groupId>
-            <artifactId>spring-starter-jwt-core</artifactId>
+            <artifactId>spring-starter-jwt-eureka</artifactId>
         </dependency>
-
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <optional>true</optional>
+            <groupId>io.authu</groupId>
+            <artifactId>spring-starter-jwt-admin-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.authu</groupId>
+            <artifactId>spring-starter-jwt-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.authu</groupId>
+            <artifactId>spring-starter-jwt-webmvc</artifactId>
         </dependency>
 
     </dependencies>

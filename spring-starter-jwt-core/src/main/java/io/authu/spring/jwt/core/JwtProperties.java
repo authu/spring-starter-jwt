@@ -26,6 +26,7 @@ public class JwtProperties {
 
     /**
      * Generate token to set expire time
+     * user?
      */
     private Duration timeout = Duration.ofDays(1);
 
@@ -35,7 +36,17 @@ public class JwtProperties {
     private Duration maxTimeout = Duration.ofDays(10);
 
     /**
+     * for each request in cloud, should generate a new token, with this timeout
+     */
+    private Duration requestTimeout = Duration.ofMinutes(10);
+
+    /**
+     * re generate
+     */
+    private boolean reGenerateEnabled = true;
+
+    /**
      * Request relation config, such as header name etc.
      */
-    private JwtRequestProperties request;
+    private JwtRequestProperties request = new JwtRequestProperties();
 }

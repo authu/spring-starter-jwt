@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>spring-starter-jwt</artifactId>
+        <groupId>io.authu</groupId>
+        <version>0.1.1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.authu.example</groupId>
+    <artifactId>simple-examples</artifactId>
+    <version>TEST</version>
+    <modules>
+        <module>eureka-server</module>
+        <module>flux-client</module>
+        <module>admin-server</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <dependencies>
+
+        <!-- next support -->
+        <!--<dependency>
+            <groupId>io.authu</groupId>
+            <artifactId>spring-starter-jwt-security</artifactId>
+        </dependency>-->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

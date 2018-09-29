@@ -9,20 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring-starter-jwt-webmvc</artifactId>
+    <artifactId>spring-starter-jwt-eureka</artifactId>
 
     <dependencies>
-
-        <dependency>
-            <groupId>io.authu</groupId>
-            <artifactId>spring-starter-jwt-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <optional>true</optional>
-        </dependency>
 
     </dependencies>
 
