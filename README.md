@@ -2,6 +2,10 @@
 Authu Jwt For Spring Cloud    
 Provide unified handling auth through jwt   
 ![status](https://img.shields.io/badge/status-dev-blue.svg)
+[ ![Download](https://api.bintray.com/packages/authu/maven-repo/spring-starter-jwt/images/download.svg) ](https://bintray.com/authu/maven-repo/spring-starter-jwt/_latestVersion)
+
+## Note
+This project is in develop, please don't use it in production env.   
 
 ## How to use ?
 Resolving artifacts using Maven   
@@ -55,9 +59,8 @@ Example
 <https://github.com/authu/spring-cloud-examples/tree/authu-jwt>
 
 ## Semantic Versioning
-MAJOR.MINOR.PATCH    
-In develop MAJOR.MINOR.PATCH.BUILD   
+MAJOR.MINOR.PATCH\[.BUILD\]     
 1. MAJOR version when you make incompatible API changes,
 2. MINOR version when you add functionality in a backwards-compatible manner, and
 3. PATCH version when you make backwards-compatible bug fixes.
-4. BUILD version when you deploy, version should add one.
+4. \[BUILD\] version nothing improve, the reason could be build fail, and rebuild.
