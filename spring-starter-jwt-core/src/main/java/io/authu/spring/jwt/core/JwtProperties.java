@@ -40,6 +40,12 @@ public class JwtProperties {
      */
     private Duration requestTimeout = Duration.ofMinutes(10);
 
+
+    /**
+     * if audience is equals to this name, this token is available for all apps
+     */
+    private String audienceAllName = "all";
+
     /**
      * re generate
      */

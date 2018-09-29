@@ -12,5 +12,6 @@ public class JwtRequestProperties {
     private boolean filterEnabled = true;
     private String headerName = "Authorization";
     private String headerPrefix = "Bearer ";
+    private String attributeName = "token-claims";
 
 }

@@ -2,11 +2,15 @@ package io.authu.spring.jwt.webflux;
 
 import io.authu.spring.jwt.core.JwtAuthServer;
 import io.authu.spring.jwt.core.JwtProperties;
-import io.jsonwebtoken.UnsupportedJwtException;
+import io.authu.spring.jwt.core.JwtRequestProperties;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.RequiredTypeException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.web.reactive.config.WebFluxConfigurer;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
@@ -14,6 +18,7 @@ import reactor.core.publisher.Mono;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by MrTT (jiang.taojie@foxmail.com)
@@ -21,7 +26,7 @@ import java.util.List;
  */
 @Slf4j
 @Configuration
-@ConditionalOnClass({WebFilter.class, Mono.class})
+@ConditionalOnClass({WebFluxConfigurer.class})
 public class AuthuJwtWebfluxAutoConfiguration implements WebFilter {
 
     @Resource
@@ -32,13 +37,16 @@ public class AuthuJwtWebfluxAutoConfiguration implements WebFilter {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
 
-        List<String> list = request.getHeaders().get(properties.getRequest().getHeaderName());
+        JwtRequestProperties requestProperties = properties.getRequest();
+        List<String> list = request.getHeaders().get(requestProperties.getHeaderName());
         if (list == null || list.size() != 1) {
             log.warn("Token is empty!");
-            throw new UnsupportedJwtException("Token is empty!");
+            throw new RequiredTypeException("Token is empty!");
         }
         String token = list.get(0);
-        authServer.parse(token);
+        Jws<Claims> claims = authServer.parse(token);
+        Map<String, Object> attributes = exchange.getAttributes();
+        attributes.put(requestProperties.getAttributeName(), claims);
 
         return chain.filter(exchange);
     }

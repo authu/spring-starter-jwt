@@ -34,7 +34,7 @@ public class AuthuJwtAdminServerAutoConfiguration {
         return (instance, request, next) -> {
             InstanceId instanceId = instance.getId();
             String name = instance.getRegistration().getName();
-            log.debug("name {}, {} for {} on {}", name, request.method(), instanceId, request.url());
+            log.debug("instance name: {}, {} for {} on {}", name, request.method(), instanceId, request.url());
             return next.exchange(request);
         };
     }
@@ -46,7 +46,7 @@ public class AuthuJwtAdminServerAutoConfiguration {
             JwtRequestProperties request = properties.getRequest();
             headers.set(
                     request.getHeaderName(),
-                    authServer.generateRequestToken("admin-server", "admin-server", instance.getRegistration().getName())
+                    authServer.generateRequestToken("admin-server", instance.getRegistration().getName())
             );
             return headers;
         };
