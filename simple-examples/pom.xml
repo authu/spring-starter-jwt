@@ -21,11 +21,10 @@
 
     <dependencies>
 
-        <!-- next support -->
-        <!--<dependency>
+        <dependency>
             <groupId>io.authu</groupId>
             <artifactId>spring-starter-jwt-security</artifactId>
-        </dependency>-->
+        </dependency>
 
     </dependencies>
 

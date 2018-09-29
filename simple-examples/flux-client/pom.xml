@@ -13,11 +13,6 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>io.authu</groupId>
-            <artifactId>spring-starter-jwt-security</artifactId>
-        </dependency>
-
         <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

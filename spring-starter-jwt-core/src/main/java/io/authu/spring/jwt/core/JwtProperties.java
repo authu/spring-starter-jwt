@@ -51,8 +51,4 @@ public class JwtProperties {
      */
     private boolean reGenerateEnabled = true;
 
-    /**
-     * Request relation config, such as header name etc.
-     */
-    private JwtRequestProperties request = new JwtRequestProperties();
 }

@@ -4,11 +4,12 @@ import de.codecentric.boot.admin.server.domain.values.InstanceId;
 import de.codecentric.boot.admin.server.ui.config.AdminServerUiAutoConfiguration;
 import de.codecentric.boot.admin.server.web.client.HttpHeadersProvider;
 import de.codecentric.boot.admin.server.web.client.InstanceExchangeFilterFunction;
+import io.authu.spring.jwt.core.AuthuJwtPrefix;
 import io.authu.spring.jwt.core.JwtAuthServer;
-import io.authu.spring.jwt.core.JwtProperties;
-import io.authu.spring.jwt.core.JwtRequestProperties;
+import io.authu.spring.jwt.core.request.JwtRequestProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -22,12 +23,13 @@ import javax.annotation.Resource;
 @Slf4j
 @Configuration
 @ConditionalOnClass({AdminServerUiAutoConfiguration.class})
+@ConditionalOnProperty(prefix = AuthuJwtPrefix.CORE, name = "enabled", havingValue = "true", matchIfMissing = true)
 public class AuthuJwtAdminServerAutoConfiguration {
 
     @Resource
-    private JwtProperties properties;
-    @Resource
     private JwtAuthServer authServer;
+    @Resource
+    private JwtRequestProperties requestProperties;
 
     @Bean
     public InstanceExchangeFilterFunction adminAudit() {
@@ -43,9 +45,8 @@ public class AuthuJwtAdminServerAutoConfiguration {
     public HttpHeadersProvider jwtHeadersProvider() {
         return (instance) -> {
             HttpHeaders headers = new HttpHeaders();
-            JwtRequestProperties request = properties.getRequest();
             headers.set(
-                    request.getHeaderName(),
+                    requestProperties.getHeaderName(),
                     authServer.generateRequestToken("admin-server", instance.getRegistration().getName())
             );
             return headers;

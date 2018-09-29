@@ -1,13 +1,15 @@
 package io.authu.spring.jwt.webflux;
 
+import io.authu.spring.jwt.core.AuthuJwtPrefix;
 import io.authu.spring.jwt.core.JwtAuthServer;
-import io.authu.spring.jwt.core.JwtProperties;
-import io.authu.spring.jwt.core.JwtRequestProperties;
+import io.authu.spring.jwt.core.request.JwtPathMatcher;
+import io.authu.spring.jwt.core.request.JwtRequestProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.RequiredTypeException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
@@ -27,17 +29,23 @@ import java.util.Map;
 @Slf4j
 @Configuration
 @ConditionalOnClass({WebFluxConfigurer.class})
+@ConditionalOnProperty(prefix = AuthuJwtPrefix.CORE, name = {"enabled","request.filter-enabled"}, havingValue = "true", matchIfMissing = true)
 public class AuthuJwtWebfluxAutoConfiguration implements WebFilter {
 
     @Resource
     private JwtAuthServer authServer;
     @Resource
-    private JwtProperties properties;
+    private JwtRequestProperties requestProperties;
 
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
 
-        JwtRequestProperties requestProperties = properties.getRequest();
+        String path = request.getPath().value();
+        log.info(path);
+        if (JwtPathMatcher.excludeMatch(path)) {
+            return chain.filter(exchange);
+        }
+
         List<String> list = request.getHeaders().get(requestProperties.getHeaderName());
         if (list == null || list.size() != 1) {
             log.warn("Token is empty!");

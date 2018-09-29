@@ -1,5 +1,6 @@
 package io.authu.spring.jwt.core;
 
+import io.authu.spring.jwt.core.request.JwtRequestProperties;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -24,10 +25,12 @@ public class JwtAuthServer {
     @Resource
     private JwtProperties properties;
     @Resource
+    private JwtRequestProperties requestProperties;
+    @Resource
     private Environment environment;
 
     public Jws<Claims> parse(String token) {
-        String prefix = properties.getRequest().getHeaderPrefix();
+        String prefix = requestProperties.getHeaderPrefix();
 
         if (StringUtils.isEmpty(token)) {
             log.warn("Token is empty!");
@@ -102,7 +105,7 @@ public class JwtAuthServer {
         String applicationName = EnvironmentUtils.getApplicationName(environment);
         audience = audience.toLowerCase();
         String token = generateToken(subject, applicationName, audience, properties.getRequestTimeout());
-        return properties.getRequest().getHeaderPrefix() + token;
+        return requestProperties.getHeaderPrefix() + token;
     }
 
     /**
