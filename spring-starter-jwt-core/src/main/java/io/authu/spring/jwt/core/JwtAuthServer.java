@@ -29,6 +29,11 @@ public class JwtAuthServer {
     @Resource
     private Environment environment;
 
+    /**
+     * parse token, prefix + encodedStr
+     *
+     * such as 'Bearer aaaa.bbbbbbbb.ccccccccccc'
+     */
     public Jws<Claims> parse(String token) {
         String prefix = requestProperties.getHeaderPrefix();
 
@@ -95,7 +100,7 @@ public class JwtAuthServer {
     public String generateUserToken(String subject, String audience) {
         String applicationName = EnvironmentUtils.getApplicationName(environment);
         audience = audience.toLowerCase();
-        return generateToken(subject, applicationName, audience, properties.getTimeout());
+        return generateToken(subject, applicationName, audience, properties.getUserTimeout());
     }
 
     /**
@@ -110,18 +115,22 @@ public class JwtAuthServer {
 
     /**
      * re generate request token
-     * todo
      */
-    /*public String reGenerateRequestToken(String subject, String issuer, String audience, Duration timeout) {
+    public String reGenerateRequestToken(Claims claims, String audience) {
+        claims.setAudience(audience);
+        return reGenerateRequestToken(claims);
+    }
+    /**
+     * re generate request token
+     */
+    public String reGenerateRequestToken(Claims claims) {
         return Jwts.builder()
-                .signWith(getKey())
-                .setSubject(subject)
-                .setIssuer(issuer)
+                .setClaims(claims)
                 .setIssuedAt(new Date())
-                .setAudience(audience)
-                .setExpiration(Date.from(Instant.now().plusSeconds(timeout.getSeconds())))
+                .signWith(getKey())
+                .setExpiration(Date.from(Instant.now().plusSeconds(properties.getRequestTimeout().getSeconds())))
                 .compact();
-    }*/
+    }
 
     private SecretKey getKey(){
         if (key != null) {
