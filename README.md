@@ -39,7 +39,7 @@ Import dependencyManagement
         <dependency>
             <groupId>io.authu</groupId>
             <artifactId>spring-starter-jwt</artifactId>
-            <version>0.1.0</version>
+            <version>${authu-jwt.version}</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
