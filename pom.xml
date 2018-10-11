@@ -6,7 +6,7 @@
 
     <groupId>io.authu</groupId>
     <artifactId>spring-starter-jwt</artifactId>
-    <version>0.1.1.0</version>
+    <version>0.1.2</version>
     <packaging>pom</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -46,16 +46,27 @@
     </profiles>
 
     <properties>
-        <authu-jwt.version>0.1.1.0</authu-jwt.version>
+        <authu-jwt.version>0.1.2</authu-jwt.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <javadoc.version>3.0.1</javadoc.version>
         <spring-boot.version>2.0.4.RELEASE</spring-boot.version>
         <spring-cloud.version>Finchley.SR1</spring-cloud.version>
         <spring-boot-admin.version>2.0.2</spring-boot-admin.version>
         <jjwt.version>0.10.5</jjwt.version>
+        <jaxb-runtime.version>2.4.0-b180830.0438</jaxb-runtime.version>
         <maven.test.skip>true</maven.test.skip>
+        <!-- over properties in spring boot -->
+        <lombok.version>1.18.2</lombok.version>
+        <!-- plugin -->
+        <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+        <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
+        <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
     </properties>
 
     <licenses>
@@ -143,6 +154,17 @@
                 <version>${authu-jwt.version}</version>
             </dependency>
 
+            <!-- third -->
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-runtime</artifactId>
+                <version>${jaxb-runtime.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -170,6 +192,38 @@
     </dependencyManagement>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven-clean-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven-deploy-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${maven-install-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -178,11 +232,6 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${javadoc.version}</version>
             </plugin>
         </plugins>
     </build>

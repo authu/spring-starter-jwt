@@ -11,7 +11,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * 2018/9/27 23:15 End.
  */
 @Data
-@ConfigurationProperties(prefix = AuthuJwtPrefix.REQURST)
+@ConfigurationProperties(prefix = AuthuJwtPrefix.REQUEST)
 public class JwtRequestProperties {
 
     private boolean filterEnabled = true;

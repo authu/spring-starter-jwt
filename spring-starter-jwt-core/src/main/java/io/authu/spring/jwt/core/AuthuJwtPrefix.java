@@ -7,6 +7,6 @@ package io.authu.spring.jwt.core;
 public interface AuthuJwtPrefix {
 
     String CORE = "authu.jwt";
-    String REQURST = "authu.jwt.request";
+    String REQUEST = "authu.jwt.request";
 
 }
