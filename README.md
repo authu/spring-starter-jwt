@@ -5,7 +5,10 @@ Provide unified handling auth through jwt
 [ ![Download](https://api.bintray.com/packages/authu/maven-repo/spring-starter-jwt/images/download.svg) ](https://bintray.com/authu/maven-repo/spring-starter-jwt/_latestVersion)
 
 ## Note
-This project is in develop, please don't use it in production env.   
+This project is developing, please don't use it in production env.   
+
+## Env
+Require JDK8+
 
 ## How to use ?
 Resolving artifacts using Maven   
@@ -54,9 +57,6 @@ Add dependency
     <artifactId>spring-starter-jwt-security</artifactId>
 </dependency>
 ```
-
-Example    
-<https://github.com/authu/spring-cloud-examples/tree/authu-jwt>
 
 ## Semantic Versioning
 MAJOR.MINOR.PATCH\[.BUILD\]     
