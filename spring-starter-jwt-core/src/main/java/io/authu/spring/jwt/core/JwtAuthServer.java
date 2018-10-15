@@ -53,14 +53,16 @@ public class JwtAuthServer {
         Claims body = claims.getBody();
 
         //Timeout
-        if (body.getIssuedAt() == null || body.getExpiration() == null) {
-            log.warn("IssuedAt or Expiration is empty!");
-            throw new RequiredTypeException("IssuedAt or Expiration is empty!");
-        }
-        Duration timeout = Duration.between(body.getIssuedAt().toInstant(), body.getExpiration().toInstant());
-        if (timeout.compareTo(properties.getMaxTimeout()) > 0) {
-            log.warn("Timeout is bigger than max timeout!");
-            throw new ExpiredJwtException(claims.getHeader(), claims.getBody(), "Timeout is bigger than max timeout!");
+        if (properties.isMaxTimeoutEnabled()) {
+            if (body.getIssuedAt() == null || body.getExpiration() == null) {
+                log.warn("IssuedAt or Expiration is empty!");
+                throw new RequiredTypeException("IssuedAt or Expiration is empty!");
+            }
+            Duration timeout = Duration.between(body.getIssuedAt().toInstant(), body.getExpiration().toInstant());
+            if (timeout.compareTo(properties.getMaxTimeout()) > 0) {
+                log.warn("Timeout is bigger than max timeout!");
+                throw new ExpiredJwtException(claims.getHeader(), claims.getBody(), "Timeout is bigger than max timeout!");
+            }
         }
 
         //Audience

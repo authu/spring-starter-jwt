@@ -31,6 +31,11 @@ public class JwtProperties {
     private Duration userTimeout = Duration.ofDays(1);
 
     /**
+     * Token expire time enabled
+     */
+    private boolean maxTimeoutEnabled = true;
+
+    /**
      * Token max expire time, from create time
      */
     private Duration maxTimeout = Duration.ofDays(10);

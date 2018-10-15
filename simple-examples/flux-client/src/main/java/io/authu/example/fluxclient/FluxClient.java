@@ -15,7 +15,7 @@ public class FluxClient {
 
 	@GetMapping("/")
 	public String index(){
-		return "Base Client Started !!";
+		return "Server Flux Started !!";
 	}
 
 }

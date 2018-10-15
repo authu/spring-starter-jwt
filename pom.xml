@@ -20,6 +20,7 @@
         <module>spring-starter-jwt-webflux</module>
         <module>spring-starter-jwt-security</module>
         <module>spring-starter-jwt-admin-server</module>
+        <module>spring-starter-jwt-client</module>
 
     </modules>
 
@@ -54,6 +55,7 @@
         <spring-cloud.version>Finchley.SR1</spring-cloud.version>
         <spring-boot-admin.version>2.0.2</spring-boot-admin.version>
         <jjwt.version>0.10.5</jjwt.version>
+        <junit-jupiter-api.version>5.3.1</junit-jupiter-api.version>
         <jaxb-runtime.version>2.4.0-b180830.0438</jaxb-runtime.version>
         <maven.test.skip>true</maven.test.skip>
         <!-- over properties in spring boot -->
@@ -151,6 +153,11 @@
             <dependency>
                 <groupId>io.authu</groupId>
                 <artifactId>spring-starter-jwt-webmvc</artifactId>
+                <version>${authu-jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.authu</groupId>
+                <artifactId>spring-starter-jwt-client</artifactId>
                 <version>${authu-jwt.version}</version>
             </dependency>
 

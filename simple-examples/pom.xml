@@ -17,6 +17,7 @@
         <module>eureka-server</module>
         <module>flux-client</module>
         <module>admin-server</module>
+        <module>webmvc</module>
     </modules>
     <packaging>pom</packaging>
 

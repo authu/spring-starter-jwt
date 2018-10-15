@@ -5,3 +5,6 @@ Disable setting:
 ```properties
 authu.jwt.request.filter-enabled=false
 ```
+
+## How to generate token
+For test, need token to request. You can generateToken through Junit4 in `spring-starter-jwt-core`
